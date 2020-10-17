@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "akNdU2sWZAkKaCUyuN9pWnUv7mllTZuGcUCOKzJYcoR5LGqBJmxt9EmynSQvJZnS7HGmAIEu1TbEz7buwjEQOA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\canno\\Documents\\Code\\NeuronPasswordToolKitSolution\\NeuronPasswordToolkit\\NeuronPasswordToolkit.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\canno\\.nuget\\packages\\materialdesigncolors\\1.2.7\\materialdesigncolors.1.2.7.nupkg.sha512",
+    "C:\\Users\\canno\\.nuget\\packages\\materialdesignextensions\\3.2.0\\materialdesignextensions.3.2.0.nupkg.sha512",
+    "C:\\Users\\canno\\.nuget\\packages\\materialdesignthemes\\3.2.0\\materialdesignthemes.3.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

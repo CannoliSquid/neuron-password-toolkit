@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xaml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NeuronPasswordToolkit.Views;
 
 namespace NeuronPasswordToolkit
 {
@@ -24,6 +26,12 @@ namespace NeuronPasswordToolkit
         public MainWindow()
         {
             InitializeComponent();
+
+            //Set AboutPage as home screen.
+            AboutPage about = new AboutPage();
+            ContentFrame.Content = about;
         }
+
+        
     }
 }

@@ -1,0 +1,386 @@
+﻿using NeuronPasswordToolkit.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NeuronPasswordToolkit.Controllers
+{
+    public class CheckController
+    {
+        /*
+        //Controller(s)
+        IOController ioCtrlr = new IOController();
+        //CryptoController cryptoCtrlr = new CryptoController();
+        StringHelper sh = new StringHelper();
+        UIHelper uHelper = new UIHelper();
+
+        //class vars
+        //Initialize RNG
+        private Random rng = new Random();
+
+        //Method to be called
+        /*public void largebatchStrengthChecks()
+        {
+            try
+            {
+                for (int u = 0; u < 25; u++)
+                {
+                    uHelper.lenNUD.Value = 8;
+                    ioCtrlr.write("Random");
+                    cryptoCtrlr.generateRandom();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write(" ");
+                    ioCtrlr.write("Familiar");
+                    cryptoCtrlr.generateFamiliar();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write(" ");
+                }
+                for (int u = 0; u < 25; u++)
+                {
+                    uHelper.lenNUD.Value = 12;
+                    ioCtrlr.write("Random");
+                    cryptoCtrlr.generateRandom();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write("Familiar");
+                    cryptoCtrlr.generateFamiliar();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write(" ");
+                }
+                for (int u = 0; u < 25; u++)
+                {
+                    uHelper.lenNUD.Value = 16;
+                    ioCtrlr.write("Random");
+                    cryptoCtrlr.generateRandom();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write("Familiar");
+                    cryptoCtrlr.generateFamiliar();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write(" ");
+                }
+                for (int u = 0; u < 25; u++)
+                {
+                    uHelper.lenNUD.Value = 20;
+                    ioCtrlr.write("Random");
+                    cryptoCtrlr.generateRandom();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write("Familiar");
+                    cryptoCtrlr.generateFamiliar();
+                    ioCtrlr.save();
+                    strengthTestChecks();
+                    ioCtrlr.write(" ");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please fill in the 'Generate -> New Password' form before trying to run the strength test. ", "Form Empty",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
+        /*
+        //Ensure that desired password length is enforced
+        public string passLengthEnforce(string input, string symbs)
+        {
+            string enforcedPW = "";
+            string addedSymb = "";
+
+            while (input.Length != uHelper.lenNUD.Value)
+            {
+                if (input.Length > uHelper.lenNUD.Value)
+                {
+                    //int nAgonv6 = rng.Next(1, input.Length);
+                    input = input.Remove(input.Length - 1);
+                }
+                else if (input.Length < uHelper.lenNUD.Value)
+                {
+                    int nAgon5 = rng.Next(1, symbs.Length);
+                    addedSymb = symbs[nAgon5].ToString();
+                    input = input + addedSymb;
+                }
+            }
+
+            enforcedPW = input;
+
+            return enforcedPW;
+        }
+
+        //Check strength w/ Entropy
+        public void checkEntropy()
+        {
+            string inputPass = uHelper.ieTB.Text;
+            int numUpper = sh.NumUppercase(inputPass);
+            int numLower = sh.NumLowercase(inputPass);
+            int numNumbers = sh.NumNumbers(inputPass);
+            int numSymbols = sh.NumSymbols(inputPass);
+            int bitsOfEntropy = 0;
+            int oneAndHalfCounter = 0;
+            int oneCounter = 0;
+
+            for (int z = 0; z < inputPass.Length; z++)
+            {
+                if (z == 0)
+                {
+                    bitsOfEntropy += 4;
+                }
+                if (z > 0 && z < 7)
+                {
+                    bitsOfEntropy += 2;
+                }
+                if (z >= 7 && z < 19)
+                {
+                    oneAndHalfCounter += 1;
+                }
+                if (z >= 19)
+                {
+                    oneCounter += 1;
+                }
+            }
+
+            int bitsOfEntropyFinal = Convert.ToInt32(bitsOfEntropy + (oneAndHalfCounter * 1.5) + (oneCounter));
+
+            if (numSymbols >= 1 && numUpper >= 1)
+            {
+                bitsOfEntropyFinal += 6;
+            }
+
+            if (bitsOfEntropyFinal >= 70)
+            {
+                uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. It is very strong.";
+                uHelper.vePB.Value = 100;
+            }
+            else if (bitsOfEntropyFinal >= 55)
+            {
+                uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. It is strong.";
+                uHelper.vePB.Value = 75;
+            }
+            else if (bitsOfEntropyFinal >= 40)
+            {
+                uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. It is fair.";
+                uHelper.vePB.Value = 50;
+            }
+            else if (bitsOfEntropyFinal >= 30)
+            {
+                uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. It is weak.";
+                uHelper.vePB.Value = 25;
+            }
+            else
+            {
+                uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. Please make it stronger.";
+                uHelper.vePB.Value = 0;
+            }
+        }
+
+        //Strength test Checks for strd and entropy
+        public void strengthTestChecks()
+        {
+            //Get password from textbox.
+            string password = uHelper.gptTB.Text;
+            int numUpper = sh.NumUppercase(password);
+            int numLower = sh.NumLowercase(password);
+            int numNumbers = sh.NumNumbers(password);
+            int numSymbols = sh.NumSymbols(password);
+            int bitsOfEntropy = 0;
+            int oneAndHalfCounter = 0;
+            int oneCounter = 0;
+
+            //Minimum Length.
+            const int min_length = 8;
+
+            for (int z = 0; z < password.Length; z++)
+            {
+                if (z == 0)
+                {
+                    bitsOfEntropy += 4;
+                }
+                if (z > 0 && z < 7)
+                {
+                    bitsOfEntropy += 2;
+                }
+                if (z >= 7 && z < 19)
+                {
+                    oneAndHalfCounter += 1;
+                }
+                if (z >= 19)
+                {
+                    oneCounter += 1;
+                }
+            }
+
+            int bitsOfEntropyFinal = Convert.ToInt32(bitsOfEntropy + (oneAndHalfCounter * 1.5) + (oneCounter));
+
+            if (numSymbols >= 1 && numUpper >= 1)
+            {
+                bitsOfEntropyFinal += 6;
+            }
+
+            if (bitsOfEntropyFinal >= 70)
+            {
+                ioCtrlr.mosWrite(bitsOfEntropyFinal + " bits of entropy. It is very strong.");
+            }
+            else if (bitsOfEntropyFinal >= 55)
+            {
+                ioCtrlr.mosWrite(bitsOfEntropyFinal + " bits of entropy. It is strong.");
+            }
+            else if (bitsOfEntropyFinal >= 40)
+            {
+                ioCtrlr.mosWrite(bitsOfEntropyFinal + " bits of entropy. It is fair.");
+            }
+            else if (bitsOfEntropyFinal >= 30)
+            {
+                ioCtrlr.mosWrite(bitsOfEntropyFinal + " bits of entropy. It is weak.");
+            }
+            else
+            {
+                ioCtrlr.mosWrite(bitsOfEntropyFinal + " bits of entropy. Please make the password stronger.");
+            }
+
+            if (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers >= 1 && numSymbols >= 1)
+            {
+                ioCtrlr.mosWrite("The generated password is very strong.");
+            }
+            else if ((password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers >= 1 && numSymbols < 1))
+            {
+                ioCtrlr.mosWrite("The generated password is strong.");
+            }
+            else if ((password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers < 1 && numSymbols < 1))
+            {
+                ioCtrlr.mosWrite("The generated password is average.");
+            }
+            else if ((password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers < 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers < 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers < 1 && numSymbols >= 1))
+            {
+                ioCtrlr.mosWrite("The generated password is weak.");
+            }
+            else
+            {
+                ioCtrlr.mosWrite("The generated password is invalid.");
+            }
+        }
+
+        //Check strength
+        public void checkStrength()
+        {
+            //Minimum Length.
+            const int min_length = 8;
+
+            //Get password from textbox.
+            string password = uHelper.ipTB.Text;
+            int numUpper = sh.NumUppercase(password);
+            int numLower = sh.NumLowercase(password);
+            int numNumbers = sh.NumNumbers(password);
+            int numSymbols = sh.NumSymbols(password);
+
+            if (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers >= 1 && numSymbols >= 1)
+            {
+                uHelper.strilTB.Text = "very strong.";
+                uHelper.strPB.Value = 100;
+            }
+            else if ((password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers >= 1 && numSymbols < 1))
+            {
+                uHelper.strilTB.Text = "strong.";
+                uHelper.strPB.Value = 75;
+            }
+            else if ((password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers >= 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers < 1 && numSymbols >= 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper >= 1 && numLower >= 1 && numNumbers < 1 && numSymbols < 1))
+            {
+                uHelper.strilTB.Text = "average.";
+                uHelper.strPB.Value = 50;
+            }
+            else if ((password.Length >= min_length && numUpper >= 1 && numLower < 1 && numNumbers < 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower >= 1 && numNumbers < 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers >= 1 && numSymbols < 1) ||
+            (password.Length >= min_length && numUpper < 1 && numLower < 1 && numNumbers < 1 && numSymbols >= 1))
+            {
+                uHelper.strilTB.Text = "weak.";
+                uHelper.strPB.Value = 25;
+            }
+            else
+            {
+                uHelper.strilTB.Text = "";
+                uHelper.strPB.Value = 0;
+            }
+        }
+
+        public string isDSCChecked()
+        {
+            string specChars = "";
+            string defspecialChars = "!@#$%^&*()_+-=,./";
+            string specspecialChars = uHelper.sscTB.Text;
+
+            //Check for which special character set to use.
+            //If specific special characters, make sure to remove white space.
+            if (uHelper.dscRB.Checked)
+            {
+                specChars = defspecialChars;
+            }
+            else
+            {
+                specChars = specspecialChars;
+                specChars = specChars.Replace(" ", String.Empty);
+            }
+
+            return specChars;
+        }
+
+        public (string, string, string, string) isDSCCheckedFamiliar()
+        {
+            string specChars = "";
+            string spchar1 = "";
+            string spchar2 = "";
+            string spchar3 = "";
+            string defspecialChars = "!@#$%^&*()_+-=,./";
+            string specspecialChars = uHelper.sscTB.Text;
+
+            //Check for which special character set to use.
+            //If specific special characters, make sure to remove white space.
+            //Pick 2 special characters out at random
+            if (uHelper.dscRB.Checked)
+            {
+                specChars = defspecialChars;
+                int nAgon = rng.Next(1, defspecialChars.Length);
+                int nAgon2 = rng.Next(1, defspecialChars.Length);
+                int nAgon3 = rng.Next(1, defspecialChars.Length);
+                spchar1 = defspecialChars[nAgon].ToString();
+                spchar2 = defspecialChars[nAgon2].ToString();
+                spchar3 = defspecialChars[nAgon3].ToString();
+            }
+            else
+            {
+                specChars = specspecialChars;
+                string specCharsFinal = specChars.Replace(" ", String.Empty);
+                int nAgonv2 = rng.Next(1, specCharsFinal.Length);
+                int nAgonv2p2 = rng.Next(1, specCharsFinal.Length);
+                int nAgonv2p3 = rng.Next(1, specCharsFinal.Length);
+                spchar1 = specCharsFinal[nAgonv2].ToString();
+                spchar2 = specCharsFinal[nAgonv2p2].ToString();
+                spchar3 = specCharsFinal[nAgonv2p3].ToString();
+            }
+
+            return (spchar1, spchar2, spchar3, specChars);
+        }
+        */
+    }
+}

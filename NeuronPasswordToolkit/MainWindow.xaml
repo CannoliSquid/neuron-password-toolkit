@@ -6,6 +6,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NeuronPasswordToolkit"
+        xmlns:views="clr-namespace:NeuronPasswordToolkit.Views"
         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
         mc:Ignorable="d"
         Title="Neuron Password Toolkit" Height="650" Width="975"
@@ -13,36 +14,58 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
-        FontFamily="{md:MaterialDesignFont}" WindowStyle="ThreeDBorderWindow" BorderBackgroundBrush="Black">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions >
-            <RowDefinition Height='*'/>
-            <RowDefinition Height='*'/>
-            <RowDefinition Height='*'/>
-            <RowDefinition Height='*'/>
-        </Grid.RowDefinitions>
-        <mde:AppBar Height="65" Background="Black">
-            <mde:SideNavigation></mde:SideNavigation>
-            <md:DrawerHost></md:DrawerHost>
-        </mde:AppBar>
-        <Label x:Name="welcomeLabel" Grid.Row="0" 
-        HorizontalAlignment="Center" 
-        VerticalAlignment="Center">
-            Hello, testing
-        </Label>
-        <md:Card Grid.Row="1" 
-        Height="75" Width="200" 
-        HorizontalAlignment="Center" 
-        VerticalAlignment="Center">
-            YERRRRRRRRRRRRRRRRRRRR
-        </md:Card>
-        <Button Style="{StaticResource MaterialDesignRaisedButton}" 
-        Grid.Row="2" Height="75" Width="75" HorizontalAlignment="Center" 
-        VerticalAlignment="Center">
-            Generate
-        </Button>
-    </Grid>
+        FontFamily="{md:MaterialDesignFont}" 
+        WindowStyle="ThreeDBorderWindow" 
+        BorderBackgroundBrush="Black">
+    <!--Typically you place the DrawerHost neer the root of your view-->
+    <!-- Any content that you want the side drawers to cover needs to be inside of the DrawerHost -->
+    <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+        <md:DrawerHost.LeftDrawerContent>
+            <DockPanel MinWidth="212">
+                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                              DockPanel.Dock="Top"
+                              HorizontalAlignment="Right" Margin="16"
+                              IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                <Menu x:Name="NavMenu">
+                    <Menu.Resources>
+                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}"></Style>
+                    </Menu.Resources>
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+                    <MenuItem x:Name="NavMIHome"  Header="Home">
+                    </MenuItem>
+                    <MenuItem x:Name="NavMITest" Header="Test">
+                    </MenuItem>
+                    <MenuItem x:Name="NavMIAbout" Header="About">
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+        </md:DrawerHost.LeftDrawerContent>
+
+        
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <md:ColorZone Padding="8" md:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" DockPanel.Dock="Top" Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                  x:Name="MenuToggleButton" Grid.Column="0"/>
+                </Grid>
+            </md:ColorZone>
+            <Frame x:Name="ContentFrame" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Frame>
+            
+        </Grid>
+    </md:DrawerHost>
 </mde:MaterialWindow>

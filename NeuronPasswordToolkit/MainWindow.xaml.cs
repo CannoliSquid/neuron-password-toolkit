@@ -28,10 +28,22 @@ namespace NeuronPasswordToolkit
             InitializeComponent();
 
             //Set AboutPage as home screen.
-            AboutPage about = new AboutPage();
-            ContentFrame.Content = about;
+            AboutView about = new AboutView();
+            ContentControl.Content = about;
         }
 
-        
+        private void HomeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Set HomePage as home screen.
+            HomeView home = new HomeView();
+            ContentControl.Content = home;
+        }
+
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Set AboutPage as home screen.
+            AboutView about = new AboutView();
+            ContentControl.Content = about;
+        }
     }
 }

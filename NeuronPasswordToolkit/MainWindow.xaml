@@ -35,11 +35,11 @@
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem x:Name="NavMIHome"  Header="Home">
+                    <MenuItem x:Name="NavMIHome"  Header="Home" Click="HomeMenuItem_Click">
                     </MenuItem>
                     <MenuItem x:Name="NavMITest" Header="Test">
                     </MenuItem>
-                    <MenuItem x:Name="NavMIAbout" Header="About">
+                    <MenuItem x:Name="NavMIAbout" Header="About" Click="AboutMenuItem_Click">
                     </MenuItem>
                 </Menu>
             </DockPanel>
@@ -64,7 +64,7 @@
                                   x:Name="MenuToggleButton" Grid.Column="0"/>
                 </Grid>
             </md:ColorZone>
-            <Frame x:Name="ContentFrame" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Frame>
+            <ContentControl x:Name="ContentControl" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentControl>
             
         </Grid>
     </md:DrawerHost>

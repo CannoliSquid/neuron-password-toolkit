@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NeuronPasswordToolkit.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,14 @@ using System.Windows.Shapes;
 namespace NeuronPasswordToolkit.Views
 {
     /// <summary>
-    /// Interaction logic for TestPage.xaml
+    /// Interaction logic for GeneratorView.xaml
     /// </summary>
-    public partial class TestPage : Page
+    public partial class GeneratorView : UserControl
     {
-        public TestPage()
+        public GeneratorView()
         {
             InitializeComponent();
+            DataContext = new QuestionViewModel();
         }
     }
 }

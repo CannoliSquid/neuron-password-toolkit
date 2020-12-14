@@ -39,6 +39,20 @@ namespace NeuronPasswordToolkit
             ContentControl.Content = home;
         }
 
+        private void GeneratorMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Set HomePage as home screen.
+            GeneratorView generate = new GeneratorView();
+            ContentControl.Content = generate;
+        }
+
+        private void HelpMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Set HomePage as home screen.
+            HelpView help = new HelpView();
+            ContentControl.Content = help;
+        }
+
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             //Set AboutPage as home screen.

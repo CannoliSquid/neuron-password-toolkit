@@ -60,7 +60,9 @@
                                   x:Name="MenuToggleButton" Grid.Column="0"/>
                 </Grid>
             </md:ColorZone>
-            <ContentControl x:Name="ContentControl" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentControl>
+            <ContentControl x:Name="ContentControl" Grid.Row="1" 
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
             
         </Grid>
     </md:DrawerHost>

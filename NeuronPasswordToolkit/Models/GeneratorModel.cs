@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Text;
 
-namespace NeuronPasswordToolkit.ViewModels
+namespace NeuronPasswordToolkit.Models
 {
-    public class QuestionViewModel : INotifyPropertyChanged
+    public class GeneratorModel : ModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public QuestionViewModel()
-        {
-        }
-
-        private bool _IsChecked;
+        /*private bool _IsChecked;
         public bool IsChecked
         {
             get => _IsChecked;
@@ -26,13 +18,13 @@ namespace NeuronPasswordToolkit.ViewModels
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
                 }
             }
-        }
+        }*/
 
         public List<string> StringQuestion
         {
-            get 
-            { 
-                return new List<string> 
+            get
+            {
+                return new List<string>
                 {
                     "What was the color of the walls in your room when you were a child?",
                     "Who is your favorite band/artist?",
@@ -73,5 +65,31 @@ namespace NeuronPasswordToolkit.ViewModels
         }
 
         public string SelectedNumberQuestion { get; set; }
+
+        public List<int> LengthSelector
+        {
+            get
+            {
+                return new List<int>
+                {
+                    8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                    31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
+                };
+            }
+        }
+
+        public int SelectedLength { get; set; }
+
+        public string AnsweredQuestion1 { get; set; }
+
+        public string AnsweredQuestion2 { get; set; }
+
+        public string GenerationType { get; set; }
+
+        public string SpecialCharacters { get; set; }
+
+        public string SpecialCharacterSet { get; set; }
+
+        public string FinalProduct { get; set; }
     }
 }

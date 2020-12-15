@@ -7,12 +7,10 @@ namespace NeuronPasswordToolkit.Controllers
 {
     public class CheckController
     {
-        /*
         //Controller(s)
         IOController ioCtrlr = new IOController();
         //CryptoController cryptoCtrlr = new CryptoController();
         StringHelper sh = new StringHelper();
-        UIHelper uHelper = new UIHelper();
 
         //class vars
         //Initialize RNG
@@ -83,35 +81,9 @@ namespace NeuronPasswordToolkit.Controllers
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }*/
-        /*
-        //Ensure that desired password length is enforced
-        public string passLengthEnforce(string input, string symbs)
-        {
-            string enforcedPW = "";
-            string addedSymb = "";
-
-            while (input.Length != uHelper.lenNUD.Value)
-            {
-                if (input.Length > uHelper.lenNUD.Value)
-                {
-                    //int nAgonv6 = rng.Next(1, input.Length);
-                    input = input.Remove(input.Length - 1);
-                }
-                else if (input.Length < uHelper.lenNUD.Value)
-                {
-                    int nAgon5 = rng.Next(1, symbs.Length);
-                    addedSymb = symbs[nAgon5].ToString();
-                    input = input + addedSymb;
-                }
-            }
-
-            enforcedPW = input;
-
-            return enforcedPW;
-        }
 
         //Check strength w/ Entropy
-        public void checkEntropy()
+        /* public void checkEntropy()
         {
             string inputPass = uHelper.ieTB.Text;
             int numUpper = sh.NumUppercase(inputPass);
@@ -174,13 +146,14 @@ namespace NeuronPasswordToolkit.Controllers
                 uHelper.veoTB.Text = bitsOfEntropyFinal + " bits of entropy. Please make it stronger.";
                 uHelper.vePB.Value = 0;
             }
-        }
+        }*/
 
-        //Strength test Checks for strd and entropy
-        public void strengthTestChecks()
+        //Strength test Checks for strd and entropy 
+        /*
+        public void strengthTestChecks(string pass)
         {
             //Get password from textbox.
-            string password = uHelper.gptTB.Text;
+            string password = pass;
             int numUpper = sh.NumUppercase(password);
             int numLower = sh.NumLowercase(password);
             int numNumbers = sh.NumNumbers(password);
@@ -271,16 +244,16 @@ namespace NeuronPasswordToolkit.Controllers
             {
                 ioCtrlr.mosWrite("The generated password is invalid.");
             }
-        }
+        } */
 
         //Check strength
-        public void checkStrength()
+        /*public void checkStrength(string pass)
         {
             //Minimum Length.
             const int min_length = 8;
 
             //Get password from textbox.
-            string password = uHelper.ipTB.Text;
+            string password = pass;
             int numUpper = sh.NumUppercase(password);
             int numLower = sh.NumLowercase(password);
             int numNumbers = sh.NumNumbers(password);
@@ -322,65 +295,6 @@ namespace NeuronPasswordToolkit.Controllers
                 uHelper.strilTB.Text = "";
                 uHelper.strPB.Value = 0;
             }
-        }
-
-        public string isDSCChecked()
-        {
-            string specChars = "";
-            string defspecialChars = "!@#$%^&*()_+-=,./";
-            string specspecialChars = uHelper.sscTB.Text;
-
-            //Check for which special character set to use.
-            //If specific special characters, make sure to remove white space.
-            if (uHelper.dscRB.Checked)
-            {
-                specChars = defspecialChars;
-            }
-            else
-            {
-                specChars = specspecialChars;
-                specChars = specChars.Replace(" ", String.Empty);
-            }
-
-            return specChars;
-        }
-
-        public (string, string, string, string) isDSCCheckedFamiliar()
-        {
-            string specChars = "";
-            string spchar1 = "";
-            string spchar2 = "";
-            string spchar3 = "";
-            string defspecialChars = "!@#$%^&*()_+-=,./";
-            string specspecialChars = uHelper.sscTB.Text;
-
-            //Check for which special character set to use.
-            //If specific special characters, make sure to remove white space.
-            //Pick 2 special characters out at random
-            if (uHelper.dscRB.Checked)
-            {
-                specChars = defspecialChars;
-                int nAgon = rng.Next(1, defspecialChars.Length);
-                int nAgon2 = rng.Next(1, defspecialChars.Length);
-                int nAgon3 = rng.Next(1, defspecialChars.Length);
-                spchar1 = defspecialChars[nAgon].ToString();
-                spchar2 = defspecialChars[nAgon2].ToString();
-                spchar3 = defspecialChars[nAgon3].ToString();
-            }
-            else
-            {
-                specChars = specspecialChars;
-                string specCharsFinal = specChars.Replace(" ", String.Empty);
-                int nAgonv2 = rng.Next(1, specCharsFinal.Length);
-                int nAgonv2p2 = rng.Next(1, specCharsFinal.Length);
-                int nAgonv2p3 = rng.Next(1, specCharsFinal.Length);
-                spchar1 = specCharsFinal[nAgonv2].ToString();
-                spchar2 = specCharsFinal[nAgonv2p2].ToString();
-                spchar3 = specCharsFinal[nAgonv2p3].ToString();
-            }
-
-            return (spchar1, spchar2, spchar3, specChars);
-        }
-        */
+        }*/
     }
 }

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using NeuronPasswordToolkit.Helpers;
 
 namespace NeuronPasswordToolkit.Controllers
 {
     public class CryptoController
     {
-        /*
         //Controller(s)
-        CheckController checkCtrlr = new CheckController();
-
-        //Helper(s)
-        UIHelper uHelper = new UIHelper();
+        //CheckController checkCtrlr = new CheckController();
+        CryptoHelper crypto = new CryptoHelper();
 
         //Initialize RNG
         private Random rng = new Random();
@@ -21,15 +19,15 @@ namespace NeuronPasswordToolkit.Controllers
         //work on other password generation methods
 
         //Use C# cryptorng to make a crazy password.
-        public void generateRandom()
+        public string generateRandom(string a1, string a2, string sChars, int len)
         {
             //Declare variables.
-            string answer1 = uHelper.a1TB.Text;
-            string answer2 = uHelper.a2TB.Text;
+            string answer1 = a1;
+            string answer2 = a2;
             string passInProgress = "";
             string generatedPass = "";
 
-            string specChars = checkCtrlr.isDSCChecked();
+            string specChars = sChars;
 
             //remove spaces in answer 1
             string answer1v2 = answer1.Replace(" ", String.Empty);
@@ -41,10 +39,10 @@ namespace NeuronPasswordToolkit.Controllers
             passInProgress += specChars;
 
             //Call mixString
-            generatedPass = genRandom(Convert.ToInt32(uHelper.lenNUD.Value), passInProgress); ;
+            generatedPass = genRandom(len, passInProgress);
 
             //Send generated password to generated password TextBox on form.
-            uHelper.gptTB.Text = generatedPass;
+            return generatedPass;
         }
 
         //generate random using crng
@@ -79,15 +77,15 @@ namespace NeuronPasswordToolkit.Controllers
         }
 
         //Generate familiar
-        public void generateFamiliar()
+        private string generateFamiliar(string a1, string a2, string spc1, string spc2, string spc3, string spcs, int len)
         {
             //Declare variables.
-            string answer1 = uHelper.a1TB.Text;
-            string answer2 = uHelper.a2TB.Text;
-            string spchar1 = checkCtrlr.isDSCCheckedFamiliar().Item1;
-            string spchar2 = checkCtrlr.isDSCCheckedFamiliar().Item2;
-            string spchar3 = checkCtrlr.isDSCCheckedFamiliar().Item3;
-            string specChars = checkCtrlr.isDSCCheckedFamiliar().Item4;
+            string answer1 = a1;
+            string answer2 = a2;
+            string spchar1 = spc1;
+            string spchar2 = spc2;
+            string spchar3 = spc3;
+            string specChars = spcs;
             string passInProgress = "";
             int strangecoin = 0;
             int dice = 0;
@@ -107,7 +105,7 @@ namespace NeuronPasswordToolkit.Controllers
             string finalPassInProgress = passInProgress2.Insert(nAgonv3p3, spchar3);
 
             //Attempt to replace familiar characters -- currently broken --
-            string pIPv2 = leetSpeakTransform(finalPassInProgress);
+            string pIPv2 = crypto.leetSpeakTransform(finalPassInProgress);
 
             //3 sided coin. More random generation
             strangecoin = rng.Next(2, 4);
@@ -132,73 +130,69 @@ namespace NeuronPasswordToolkit.Controllers
             string pIPv3p2 = halfpass2.Insert(dice2, a2chunk2);
             string pIPv3 = pIPv3p1 + pIPv3p2;
 
-            string final = checkCtrlr.passLengthEnforce(pIPv3, specChars);
+            string final = crypto.passLengthEnforce(pIPv3, specChars, len);
 
             //replace with final when  you get this function working.
             //Finally done
-            uHelper.gptTB.Text = final;
+            return final;
         }
 
-        //Come up with method that replaces characters in user answers with "similar looking" characters. Some might call it 1337 speak
-        public string leetSpeakTransform(string input)
+        public string isDSCChecked(string selection, string charPool)
         {
-            //dictionary
-            var ltSwap = new Dictionary<char, char>()
+            string specChars = "";
+            string defspecialChars = "!@#$%^&*()_+-=,./";
+            string specspecialChars = charPool;
+
+            //Check for which special character set to use.
+            //If specific special characters, make sure to remove white space.
+            if (selection == "default")
             {
-                {'a' , '@'},
-                {'A' , '4'},
-                {'4' , 'A'},
-                {'e' , '3'},
-                {'E' , '3'},
-                {'3' , 'E'},
-                {'t' , '7'},
-                {'T' , '7'},
-                {'7' , 'T'},
-                {'l' , '1'},
-                {'L' , '1'},
-                {'1' , 'L'},
-                {'i' , '!'},
-                {'I' , '!'},
-                {'b' , '8'},
-                {'B' , '8'},
-                {'8' , 'B'},
-                {'o' , '0'},
-                {'O' , '0'},
-                {'0' , 'O'}
-            };
-
-            //Initialize dice for RNG
-            int dice = 0;
-
-            //Output variable
-            string newishPass = "";
-
-            foreach (char c in input)
+                specChars = defspecialChars;
+            }
+            else if (selection == "special")
             {
-                char p;
-
-                if (ltSwap.ContainsKey(c))
-                {
-                    dice = rng.Next(1, 7);
-                    if (dice > 3)
-                    {
-                        ltSwap.TryGetValue(c, out p);
-                    }
-                    else
-                    {
-                        p = c;
-                    }
-                }
-                else
-                {
-                    p = c;
-                }
-
-                newishPass += p;
+                specChars = specspecialChars;
+                specChars = specChars.Replace(" ", String.Empty);
             }
 
-            //Returns number of Symbols.
-            return newishPass;
-        }*/
+            return specChars;
+        }
+
+        public (string, string, string, string) isSCCheckedFamiliar(string selection, string charPool)
+        {
+            string specChars = "";
+            string spchar1 = "";
+            string spchar2 = "";
+            string spchar3 = "";
+            string defspecialChars = "!@#$%^&*()_+-=,./";
+            string specspecialChars = charPool;
+
+            //Check for which special character set to use.
+            //If specific special characters, make sure to remove white space.
+            //Pick 2 special characters out at random
+            if (selection == "default")
+            {
+                specChars = defspecialChars;
+                int nAgon = rng.Next(1, defspecialChars.Length);
+                int nAgon2 = rng.Next(1, defspecialChars.Length);
+                int nAgon3 = rng.Next(1, defspecialChars.Length);
+                spchar1 = defspecialChars[nAgon].ToString();
+                spchar2 = defspecialChars[nAgon2].ToString();
+                spchar3 = defspecialChars[nAgon3].ToString();
+            }
+            else if (selection == "special")
+            {
+                specChars = specspecialChars;
+                string specCharsFinal = specChars.Replace(" ", String.Empty);
+                int nAgonv2 = rng.Next(1, specCharsFinal.Length);
+                int nAgonv2p2 = rng.Next(1, specCharsFinal.Length);
+                int nAgonv2p3 = rng.Next(1, specCharsFinal.Length);
+                spchar1 = specCharsFinal[nAgonv2].ToString();
+                spchar2 = specCharsFinal[nAgonv2p2].ToString();
+                spchar3 = specCharsFinal[nAgonv2p3].ToString();
+            }
+
+            return (spchar1, spchar2, spchar3, specChars);
+        }
     }
 }

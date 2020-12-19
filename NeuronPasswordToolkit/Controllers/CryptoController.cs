@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using NeuronPasswordToolkit.Helpers;
@@ -10,7 +11,7 @@ namespace NeuronPasswordToolkit.Controllers
     {
         //Controller(s)
         //CheckController checkCtrlr = new CheckController();
-        CryptoHelper crypto = new CryptoHelper();
+        CryptoHelper cryptoH = new CryptoHelper();
 
         //Initialize RNG
         private Random rng = new Random();
@@ -19,24 +20,22 @@ namespace NeuronPasswordToolkit.Controllers
         //work on other password generation methods
 
         //Use C# cryptorng to make a crazy password.
-        public string generateRandom(string a1, string a2, string sChars, int len)
+        public SecureString generateRandom(string a1, string a2, string sChars, int len)
         {
             //Declare variables.
-            string answer1 = a1;
-            string answer2 = a2;
-            string passInProgress = "";
-            string generatedPass = "";
-
-            string specChars = sChars;
-
             //remove spaces in answer 1
-            string answer1v2 = answer1.Replace(" ", String.Empty);
-            string answer2v2 = answer2.Replace(" ", String.Empty);
+            string answer1v2 = a1.Replace(" ", String.Empty);
+            string answer2v2 = a2.Replace(" ", String.Empty);
+            string passInProgress = "";
+            SecureString generatedPass = new SecureString();
+
+            string[] components = new string[] { answer1v2, answer2v2, sChars };
 
             //Build string
-            passInProgress += answer1v2;
-            passInProgress += answer2v2;
-            passInProgress += specChars;
+            foreach(string s in components)
+            {
+                passInProgress += s;
+            }
 
             //Call mixString
             generatedPass = genRandom(len, passInProgress);
@@ -46,11 +45,12 @@ namespace NeuronPasswordToolkit.Controllers
         }
 
         //generate random using crng
-        static string genRandom(int length, string input)
+        static SecureString genRandom(int length, string input)
         {
-            string randString = "";
+            SecureString randString = new SecureString();
             using (RNGCryptoServiceProvider crng = new RNGCryptoServiceProvider())
             {
+                //potential pitfall here if not enough chars in passinprogress -- fix in later iteration by looping over again
                 while (randString.Length != length)
                 {
                     // Create a byte array to hold the random value.
@@ -65,7 +65,7 @@ namespace NeuronPasswordToolkit.Controllers
                     //If the byte -> character is in the input pool, add to randString
                     if (input.Contains(c))
                     {
-                        randString += c;
+                        randString.AppendChar(c);
                     }
                 }
                 //Dispose of crng
@@ -77,15 +77,12 @@ namespace NeuronPasswordToolkit.Controllers
         }
 
         //Generate familiar
-        private string generateFamiliar(string a1, string a2, string spc1, string spc2, string spc3, string spcs, int len)
+        public SecureString generateFamiliar(string a1, string a2, string spcs, int len)
         {
             //Declare variables.
             string answer1 = a1;
             string answer2 = a2;
-            string spchar1 = spc1;
-            string spchar2 = spc2;
-            string spchar3 = spc3;
-            string specChars = spcs;
+            char[] spchar = spcs.ToCharArray();
             string passInProgress = "";
             int strangecoin = 0;
             int dice = 0;
@@ -100,12 +97,13 @@ namespace NeuronPasswordToolkit.Controllers
             int nAgonv3p3 = rng.Next(1, passInProgress.Length);
 
             //Use random numbers to insert special characters into the password as it is being build
-            string passInProgress1 = passInProgress.Insert(nAgonv3, spchar1);
-            string passInProgress2 = passInProgress.Insert(nAgonv3p2, spchar2);
-            string finalPassInProgress = passInProgress2.Insert(nAgonv3p3, spchar3);
+            //look into changing into securestring
+            string passInProgress1 = passInProgress.Insert(nAgonv3, spchar[0].ToString());
+            string passInProgress2 = passInProgress1.Insert(nAgonv3p2, spchar[1].ToString());
+            string finalPassInProgress = passInProgress2.Insert(nAgonv3p3, spchar[2].ToString());
 
             //Attempt to replace familiar characters -- currently broken --
-            string pIPv2 = crypto.leetSpeakTransform(finalPassInProgress);
+            string pIPv2 = cryptoH.leetSpeakTransform(finalPassInProgress);
 
             //3 sided coin. More random generation
             strangecoin = rng.Next(2, 4);
@@ -130,40 +128,16 @@ namespace NeuronPasswordToolkit.Controllers
             string pIPv3p2 = halfpass2.Insert(dice2, a2chunk2);
             string pIPv3 = pIPv3p1 + pIPv3p2;
 
-            string final = crypto.passLengthEnforce(pIPv3, specChars, len);
+            SecureString final = cryptoH.passLengthEnforce(pIPv3, spcs, len);
 
             //replace with final when  you get this function working.
             //Finally done
             return final;
         }
 
-        public string isDSCChecked(string selection, string charPool)
+        public string familiarCharMix(string selection, string charPool = "")
         {
-            string specChars = "";
-            string defspecialChars = "!@#$%^&*()_+-=,./";
-            string specspecialChars = charPool;
-
-            //Check for which special character set to use.
-            //If specific special characters, make sure to remove white space.
-            if (selection == "default")
-            {
-                specChars = defspecialChars;
-            }
-            else if (selection == "special")
-            {
-                specChars = specspecialChars;
-                specChars = specChars.Replace(" ", String.Empty);
-            }
-
-            return specChars;
-        }
-
-        public (string, string, string, string) isSCCheckedFamiliar(string selection, string charPool)
-        {
-            string specChars = "";
-            string spchar1 = "";
-            string spchar2 = "";
-            string spchar3 = "";
+            string finalCharPool = "";
             string defspecialChars = "!@#$%^&*()_+-=,./";
             string specspecialChars = charPool;
 
@@ -172,27 +146,24 @@ namespace NeuronPasswordToolkit.Controllers
             //Pick 2 special characters out at random
             if (selection == "default")
             {
-                specChars = defspecialChars;
                 int nAgon = rng.Next(1, defspecialChars.Length);
                 int nAgon2 = rng.Next(1, defspecialChars.Length);
                 int nAgon3 = rng.Next(1, defspecialChars.Length);
-                spchar1 = defspecialChars[nAgon].ToString();
-                spchar2 = defspecialChars[nAgon2].ToString();
-                spchar3 = defspecialChars[nAgon3].ToString();
+                finalCharPool += defspecialChars[nAgon].ToString();
+                finalCharPool += defspecialChars[nAgon2].ToString();
+                finalCharPool += defspecialChars[nAgon3].ToString();
             }
             else if (selection == "special")
             {
-                specChars = specspecialChars;
-                string specCharsFinal = specChars.Replace(" ", String.Empty);
-                int nAgonv2 = rng.Next(1, specCharsFinal.Length);
-                int nAgonv2p2 = rng.Next(1, specCharsFinal.Length);
-                int nAgonv2p3 = rng.Next(1, specCharsFinal.Length);
-                spchar1 = specCharsFinal[nAgonv2].ToString();
-                spchar2 = specCharsFinal[nAgonv2p2].ToString();
-                spchar3 = specCharsFinal[nAgonv2p3].ToString();
+                int nAgonv2 = rng.Next(1, specspecialChars.Length);
+                int nAgonv2p2 = rng.Next(1, specspecialChars.Length);
+                int nAgonv2p3 = rng.Next(1, specspecialChars.Length);
+                finalCharPool += specspecialChars[nAgonv2].ToString();
+                finalCharPool += specspecialChars[nAgonv2p2].ToString();
+                finalCharPool += specspecialChars[nAgonv2p3].ToString();
             }
 
-            return (spchar1, spchar2, spchar3, specChars);
+            return finalCharPool;
         }
     }
 }

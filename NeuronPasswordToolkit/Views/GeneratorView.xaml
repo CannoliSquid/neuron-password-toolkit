@@ -40,20 +40,20 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center">Input Information</Label>
             <Label x:Name="FormMainInputQ1Label" Grid.Row="1" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Question 1:</Label>
-            <ComboBox x:Name="FormMainInputQ1Select" ItemsSource="{Binding StringQuestion}" SelectedItem="{Binding SelectedStringQuestion, Mode=TwoWay}" 
+            <ComboBox x:Name="FormMainInputQ1Select" ItemsSource="{Binding StringQuestion}" SelectedItem="{Binding SelectedStringQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputA1Label" Grid.Row="2" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA1TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 Text="{Binding AnsweredQuestion1}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                 Text="{Binding AnsweredQuestion1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputQ2Label" Grid.Row="3" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Question 2:</Label>
-            <ComboBox x:Name="FormMainInputQ2Select" ItemsSource="{Binding NumberQuestion}" SelectedItem="{Binding SelectedNumberQuestion, Mode=TwoWay}" 
+            <ComboBox x:Name="FormMainInputQ2Select" ItemsSource="{Binding NumberQuestion}" SelectedItem="{Binding SelectedNumberQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputA2Label" Grid.Row="4" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA2TB" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 Text="{Binding AnsweredQuestion2}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                 Text="{Binding AnsweredQuestion2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </Grid>
 
         <Grid x:Name="FormSpecCharsInputGrid" Grid.Row="0" Grid.Column="2" Margin="15,15,15,15" >
@@ -71,15 +71,15 @@
             <Label x:Name="FormSpecCharsTitleLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Special Characters</Label>
             <RadioButton x:Name="FormSpecCharsDefault" Content="Use Default Special Characters" 
-                         Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                         Background="#1565c0" Foreground="#DDFFFFFF" Checked="FormSpecCharsDefault_Checked"
+                         Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Checked="FormSpecCharsDefault_Checked"
+                         Background="#1565c0" Foreground="#DDFFFFFF" Command="{Binding FormSpecCharsDefault_Checked}"
                          HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,15"/>
             <RadioButton x:Name="FormSpecCharsSpecific" Content="Use Specific Special Characters" 
                          Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
-                         Background="#1565c0" Foreground="#DDFFFFFF" 
-                         HorizontalAlignment="Center" VerticalAlignment="Center" Checked="FormSpecCharsSpecific_Checked"/>
+                         Background="#1565c0" Foreground="#DDFFFFFF" Checked="FormSpecCharsSpecific_Checked"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormSpecCharsSpecific_Checked}"/>
             <TextBox x:Name="FormSpecCharsTB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" md:HintAssist.Hint="Specify your Special Character Pool" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding FinalProduct, Mode=OneWayToSource}" IsEnabled="false"/>
+                 VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding SpecialCharacters, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsEnabled="false"/>
         </Grid>
 
         <Grid x:Name="FormLengthInputGrid" Grid.Row="1" Grid.Column="2" Margin="15,15,15,15">
@@ -95,13 +95,13 @@
             </Grid.RowDefinitions>
             <Label x:Name="FormLengthInputTitleLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Desired Password Length:</Label>
-            <ComboBox x:Name="FormLengthInputLengthSelect" ItemsSource="{Binding LengthSelector}" SelectedItem="{Binding SelectedLength, Mode=TwoWay}" 
+            <ComboBox x:Name="FormLengthInputLengthSelect" ItemsSource="{Binding LengthSelector}" SelectedItem="{Binding SelectedLength, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                       VerticalAlignment="Center"/>
             <Button x:Name="FormGenerateRandomButton" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="FormGenerateRandomButton_Click">Generate Random Password</Button>
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateRandomButton_Click}">Generate Random Password</Button>
             <Button x:Name="FormGenerateFamiliarButton" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="FormGenerateFamiliarButton_Click">Generate "Familiar" Password</Button>
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateFamiliarButton_Click}">Generate "Familiar" Password</Button>
         </Grid>
 
         <Grid x:Name="FormOutputGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,15,15,15">
@@ -118,12 +118,10 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center">Output</Label>
             <Label x:Name="FormOutputLabel" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                    HorizontalAlignment="Center" VerticalAlignment="Center">Generated Password:</Label>
-            <TextBox x:Name="FormOutputTB" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" 
-                     Text="{Binding FinalProduct, Mode=OneWay}"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 VerticalAlignment="Center" HorizontalAlignment="Stretch" IsReadOnly="True"/>
+            <PasswordBox x:Name="FormOutputPB" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" PasswordChar="●"
+                 VerticalAlignment="Center" HorizontalAlignment="Stretch" md:HintAssist.Hint="Password"/>
             <Button x:Name="FormOutputSaveButton" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Center">Save</Button>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormOutputSaveButton_Click}">Save</Button>
         </Grid>
 
     </Grid>

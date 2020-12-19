@@ -13,6 +13,7 @@ namespace NeuronPasswordToolkit
     /// </summary>
     public partial class App : Application
     {
+		//This is if you want to instantiate everything from codebehind. Not Needed.
 		/*private void Application_Startup(object sender, StartupEventArgs e)
 		{
 			// Create the startup window

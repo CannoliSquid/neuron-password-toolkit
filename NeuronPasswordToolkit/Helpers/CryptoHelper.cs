@@ -1,6 +1,7 @@
 ﻿using NeuronPasswordToolkit.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 
 namespace NeuronPasswordToolkit.Helpers
@@ -17,9 +18,9 @@ namespace NeuronPasswordToolkit.Helpers
         private Random rng = new Random();
 
         //Ensure that desired password length is enforced
-        public string passLengthEnforce(string input, string symbs, int len)
+        public SecureString passLengthEnforce(string input, string symbs, int len)
         {
-            string enforcedPW = "";
+            SecureString enforcedPW = new SecureString();
             string addedSymb = "";
 
             while (input.Length != len)
@@ -37,7 +38,10 @@ namespace NeuronPasswordToolkit.Helpers
                 }
             }
 
-            enforcedPW = input;
+            foreach(char c in input)
+            {
+                enforcedPW.AppendChar(c);
+            }
 
             return enforcedPW;
         }

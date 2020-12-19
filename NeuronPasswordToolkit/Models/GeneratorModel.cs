@@ -1,25 +1,14 @@
-﻿using System;
+﻿using NeuronPasswordToolkit.Interfaces;
+using NeuronPasswordToolkit.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 
 namespace NeuronPasswordToolkit.Models
 {
-    public class GeneratorModel : ModelBase
+    public class GeneratorModel : ViewModelBase
     {
-        /*private bool _IsChecked;
-        public bool IsChecked
-        {
-            get => _IsChecked;
-            set
-            {
-                if (_IsChecked != value)
-                {
-                    _IsChecked = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsChecked)));
-                }
-            }
-        }*/
-
         public List<string> StringQuestion
         {
             get
@@ -43,7 +32,13 @@ namespace NeuronPasswordToolkit.Models
             }
         }
 
-        public string SelectedStringQuestion { get; set; }
+        private string _selectedStringQuestion { get; set; }
+
+        public string SelectedStringQuestion 
+        {
+            get { return _selectedStringQuestion; }
+            set { _selectedStringQuestion = value; OnPropertyChanged(); }
+        }
 
         public List<string> NumberQuestion
         {
@@ -63,8 +58,13 @@ namespace NeuronPasswordToolkit.Models
                 };
             }
         }
+        private string _selectedNumberQuestion { get; set; }
 
-        public string SelectedNumberQuestion { get; set; }
+        public string SelectedNumberQuestion 
+        {
+            get { return _selectedNumberQuestion; }
+            set { _selectedNumberQuestion = value; OnPropertyChanged(); }
+        }
 
         public List<int> LengthSelector
         {
@@ -77,19 +77,12 @@ namespace NeuronPasswordToolkit.Models
                 };
             }
         }
+        private int _selectedLength { get; set; }
 
-        public int SelectedLength { get; set; }
-
-        public string AnsweredQuestion1 { get; set; }
-
-        public string AnsweredQuestion2 { get; set; }
-
-        public string GenerationType { get; set; }
-
-        public string SpecialCharacters { get; set; }
-
-        public string SpecialCharacterSet { get; set; }
-
-        public string FinalProduct { get; set; }
+        public int SelectedLength
+        {
+            get { return _selectedLength; }
+            set { _selectedLength = value; OnPropertyChanged(); }
+        }
     }
 }

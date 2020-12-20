@@ -83,13 +83,9 @@ namespace NeuronPasswordToolkit.Controllers
             string answer1 = a1;
             string answer2 = a2;
             char[] spchar = spcs.ToCharArray();
-            string passInProgress = "";
-            int strangecoin = 0;
-            int dice = 0;
-            int dice2 = 0;
 
             //Start building string
-            passInProgress = answer1.Replace(" ", String.Empty);
+            string passInProgress = answer1.Replace(" ", String.Empty);
 
             //Random Generation
             int nAgonv3 = rng.Next(1, passInProgress.Length);
@@ -106,7 +102,7 @@ namespace NeuronPasswordToolkit.Controllers
             string pIPv2 = cryptoH.leetSpeakTransform(finalPassInProgress);
 
             //3 sided coin. More random generation
-            strangecoin = rng.Next(2, 4);
+            int strangecoin = rng.Next(2, 4);
 
             //Take x% of the first answer, rounded up.
             int splitpassnum = (pIPv2.Length / strangecoin);
@@ -116,8 +112,8 @@ namespace NeuronPasswordToolkit.Controllers
             string halfpass2 = pIPv2.Substring(splitpassnum);
 
             //More RNG LMAO
-            dice = rng.Next(0, 4);
-            dice2 = rng.Next(1, answer2.Length);
+            int dice = rng.Next(0, 4);
+            int dice2 = rng.Next(1, answer2.Length);
 
             //Get Chunks
             string a2chunk1 = answer2.Substring(0, (answer2.Length / 2));

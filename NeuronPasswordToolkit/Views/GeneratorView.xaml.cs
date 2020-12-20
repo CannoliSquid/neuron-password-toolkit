@@ -38,5 +38,15 @@ namespace NeuronPasswordToolkit.Views
         {
             FormSpecCharsTB.IsEnabled = false;
         }
+
+        private void FormGenerateRandomButton_Click(object sender, RoutedEventArgs e)
+        {
+            FormOutputPB.Password = "NotTheRealPassword!";
+        }
+
+        private void FormGenerateFamiliarButton_Click(object sender, RoutedEventArgs e)
+        {
+            FormOutputPB.Password = "NotTheRealPassword!";
+        }
     }
 }

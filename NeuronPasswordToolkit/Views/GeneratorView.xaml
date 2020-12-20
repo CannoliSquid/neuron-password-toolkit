@@ -72,12 +72,12 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center">Special Characters</Label>
             <RadioButton x:Name="FormSpecCharsDefault" Content="Use Default Special Characters" 
                          Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Checked="FormSpecCharsDefault_Checked"
-                         Background="#1565c0" Foreground="#DDFFFFFF" Command="{Binding FormSpecCharsDefault_Checked}"
+                         Background="#1565c0" Foreground="#DDFFFFFF" Command="{Binding FormSpecCharsDefaultChecked}"
                          HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,15"/>
             <RadioButton x:Name="FormSpecCharsSpecific" Content="Use Specific Special Characters" 
                          Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
                          Background="#1565c0" Foreground="#DDFFFFFF" Checked="FormSpecCharsSpecific_Checked"
-                         HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormSpecCharsSpecific_Checked}"/>
+                         HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormSpecCharsSpecificChecked}"/>
             <TextBox x:Name="FormSpecCharsTB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" md:HintAssist.Hint="Specify your Special Character Pool" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding SpecialCharacters, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsEnabled="false"/>
         </Grid>
@@ -99,9 +99,9 @@
                       Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                       VerticalAlignment="Center"/>
             <Button x:Name="FormGenerateRandomButton" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateRandomButton_Click}">Generate Random Password</Button>
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateRandomButtonClick}" Click="FormGenerateRandomButton_Click">Generate Random Password</Button>
             <Button x:Name="FormGenerateFamiliarButton" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateFamiliarButton_Click}">Generate "Familiar" Password</Button>
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateFamiliarButtonClick}" Click="FormGenerateFamiliarButton_Click">Generate "Familiar" Password</Button>
         </Grid>
 
         <Grid x:Name="FormOutputGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,15,15,15">
@@ -121,7 +121,7 @@
             <PasswordBox x:Name="FormOutputPB" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" PasswordChar="●"
                  VerticalAlignment="Center" HorizontalAlignment="Stretch" md:HintAssist.Hint="Password"/>
             <Button x:Name="FormOutputSaveButton" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormOutputSaveButton_Click}">Save</Button>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormOutputSaveButtonClick}">Save</Button>
         </Grid>
 
     </Grid>

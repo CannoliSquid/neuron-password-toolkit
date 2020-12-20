@@ -17,6 +17,7 @@ namespace NeuronPasswordToolkit.ViewModels
         #region Variables
         IOController io = new IOController();
 
+        #region Model Elements
         public List<string> StringQuestion
         {
             get
@@ -92,7 +93,9 @@ namespace NeuronPasswordToolkit.ViewModels
             get { return _selectedLength; }
             set { _selectedLength = value; OnPropertyChanged(); }
         }
+        #endregion
 
+        #region Binding Variables
         private string _answeredQuestion1;
         public string AnsweredQuestion1
         {
@@ -134,19 +137,15 @@ namespace NeuronPasswordToolkit.ViewModels
             get { return _finalProduct; }
             set { _finalProduct = value; OnPropertyChanged(); }
         }
+        #endregion
 
-        private ICommand formSpecCharsSpecificChecked { get; set; }
-        public ICommand FormSpecCharsSpecificChecked 
-        {
-            get
-            {
-                return formSpecCharsSpecificChecked;
-            }
-            set
-            {
-                formSpecCharsSpecificChecked = value;
-            }
-        }
+        #region Commands
+        public ICommand FormSpecCharsSpecificChecked { get; set; }
+        public ICommand FormSpecCharsDefaultChecked { get; set; }
+        public ICommand FormGenerateRandomButtonClick { get; set; }
+        public ICommand FormGenerateFamiliarButtonClick { get; set; }
+        public ICommand FormOutputSaveButtonClick { get; set; }
+        #endregion
 
         /* old attempts
         private string _answeredQuestion1;
@@ -202,6 +201,11 @@ namespace NeuronPasswordToolkit.ViewModels
         public GeneratorViewModel()
         {
             //FormSpecCharsSpecificChecked = new RelayCommand(FormSpecCharsSpecific_Checked);
+            FormSpecCharsSpecificChecked = new RelayCommand(o => FormSpecCharsSpecific_Checked());
+            FormSpecCharsDefaultChecked = new RelayCommand(o => FormSpecCharsDefault_Checked());
+            FormGenerateRandomButtonClick = new RelayCommand(o => FormGenerateRandomButton_Click());
+            FormGenerateFamiliarButtonClick = new RelayCommand(o => FormGenerateFamiliarButton_Click());
+            FormOutputSaveButtonClick = new RelayCommand(o => FormOutputSaveButton_Click());
         }
 
         private void FormSpecCharsSpecific_Checked()
@@ -242,6 +246,7 @@ namespace NeuronPasswordToolkit.ViewModels
 
         private void FormOutputSaveButton_Click()
         {
+            FinalProduct.MakeReadOnly();
             io.save(FinalProduct);
             FinalProduct.Dispose();
         }

@@ -35,7 +35,6 @@
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem x:Name="NavMIHome"  Header="Home" Click="HomeMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="NavMIGenerator" Header="Generator" Click="GeneratorMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="NavMIAbout" Header="About" Click="AboutMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="NavMIHelp" Header="Help" Click="HelpMenuItem_Click"></MenuItem>

@@ -26,16 +26,26 @@ namespace NeuronPasswordToolkit.ViewModels
                 {
                     "What was the color of the walls in your room when you were a child?",
                     "Who is your favorite band/artist?",
+                    "What band/artist is your guilt pleasure?",
+                    "In a few words, describe your most embarrassing memory.",
                     "What was the name of the road you lived on as a child?",
                     "Where did you go for your first vacation?",
+                    "Where were you when you had your first kiss?",
                     "What is/was your nickname?",
                     "What is the name of your favorite store?",
+                    "What is your mother's maiden name?",
+                    "What city did you get lost in?",
+                    "What is the birth month of your favorite family member?",
+                    "What was the name of your elementary school?",
                     "Who is your favorite superhero?",
                     "What is your first sibling's middle name?",
                     "In what town was your High School located?",
                     "What was your favorite teacher's last name?",
+                    "What is the last name of the teacher who gave you your first failing grade?",
+                    "What was the name of your first stuffed animal?",
                     "Who is your role model?",
                     "What was your childhood best friend's last name?",
+                    "What is the name of a college you applied to but didn't attend?",
                     "What is your favorite drink/food?"
                 };
             }
@@ -57,13 +67,17 @@ namespace NeuronPasswordToolkit.ViewModels
                 {
                     "What were the first 5 digits of your first telephone number (either cellular or home)?",
                     "What year was your favorite album released?",
+                    "Pick 5 numbers, 1 through 60, to play the lottery with for the rest of your life.",
                     "What is your shoe size and lucky number? (Enter as one number)",
+                    "How old were you when you moved into your own apartment/house? What was the postal code there?",
                     "What year did you graduate from high school?",
+                    "If you were swarmed by an army of duck-sized horses, how many would it take to overwhelm you? Be confident!",
+                    "What was the postal code of the area you lived in when you were in 5th grade?",
                     "What was the most expensive thing you remember purchasing? (Round to the nearest dollar)",
                     "What was the model year of your first car?",
-                    "When do you usually eat your first meal? (Enter the time as one number without formatting)",
+                    "At what time of day do you usually eat your first meal?",
                     "What age did you start dating? What age are you now? (Enter as one number)",
-                    "What date is significant to you? (Enter as one number without formatting)"
+                    "What date is significant to you?"
                 };
             }
         }
@@ -147,60 +161,10 @@ namespace NeuronPasswordToolkit.ViewModels
         public ICommand FormOutputSaveButtonClick { get; set; }
         #endregion
 
-        /* old attempts
-        private string _answeredQuestion1;
-        public string AnsweredQuestion1
-        {
-            get => _answeredQuestion1;
-            set => _answeredQuestion1 = value;
-        }
-
-        private string _answeredQuestion2;
-        public string AnsweredQuestion2
-        {
-            get => _answeredQuestion2;
-            set => _answeredQuestion2 = value;
-        }
-
-        private string _specialCharacterSet;
-        public string SpecialCharacterSet
-        {
-            get => _specialCharacterSet;
-            set => _specialCharacterSet = value;
-        }
-
-        private string _specialCharacters;
-        public string SpecialCharacters
-        {
-            get => _specialCharacters;
-            set => _specialCharacters = value;
-        }
-
-        private string _generationType;
-        public string GenerationType
-        {
-            get => _generationType;
-            set => _generationType = value;
-        }
-
-        private int _selectedLength;
-        public int SelectedLength
-        {
-            get => _selectedLength;
-            set => _selectedLength = value;
-        }
-
-        private SecureString _finalProduct;
-        public SecureString FinalProduct
-        {
-            get => _finalProduct;
-            set => _finalProduct = value;
-        }*/
         #endregion
 
         public GeneratorViewModel()
         {
-            //FormSpecCharsSpecificChecked = new RelayCommand(FormSpecCharsSpecific_Checked);
             FormSpecCharsSpecificChecked = new RelayCommand(o => FormSpecCharsSpecific_Checked());
             FormSpecCharsDefaultChecked = new RelayCommand(o => FormSpecCharsDefault_Checked());
             FormGenerateRandomButtonClick = new RelayCommand(o => FormGenerateRandomButton_Click());

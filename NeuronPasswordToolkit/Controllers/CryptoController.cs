@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using NeuronPasswordToolkit.Helpers;
 
 namespace NeuronPasswordToolkit.Controllers
@@ -22,10 +23,11 @@ namespace NeuronPasswordToolkit.Controllers
         //Use C# cryptorng to make a crazy password.
         public SecureString generateRandom(string a1, string a2, string sChars, int len)
         {
-            //Declare variables.
-            //remove spaces in answer 1
-            string answer1v2 = a1.Replace(" ", String.Empty);
-            string answer2v2 = a2.Replace(" ", String.Empty);
+            //Declare variables and Regex replace characters in answers if applicable.
+            Regex pattern = new Regex("[.#$()/;,\t\r -]|[\n]{2}");
+            string answer1v2 = pattern.Replace(a1, String.Empty);
+            string answer2v2 = pattern.Replace(a2, String.Empty);
+            
             string passInProgress = "";
             SecureString generatedPass = new SecureString();
 

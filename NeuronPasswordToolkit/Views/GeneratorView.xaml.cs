@@ -48,5 +48,10 @@ namespace NeuronPasswordToolkit.Views
         {
             FormOutputPB.Password = "NotTheRealPassword!";
         }
+
+        private void FormOutputSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            FormOutputPB.Password = null;
+        }
     }
 }

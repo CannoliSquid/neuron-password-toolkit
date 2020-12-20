@@ -119,9 +119,9 @@
             <Label x:Name="FormOutputLabel" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                    HorizontalAlignment="Center" VerticalAlignment="Center">Generated Password:</Label>
             <PasswordBox x:Name="FormOutputPB" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" PasswordChar="●"
-                 VerticalAlignment="Center" HorizontalAlignment="Stretch" md:HintAssist.Hint="Password"/>
+                 VerticalAlignment="Center" HorizontalAlignment="Stretch" md:HintAssist.Hint="Please generate a password"/>
             <Button x:Name="FormOutputSaveButton" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormOutputSaveButtonClick}">Save</Button>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding FormOutputSaveButtonClick}" Click="FormOutputSaveButton_Click">Save</Button>
         </Grid>
 
     </Grid>

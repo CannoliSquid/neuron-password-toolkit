@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace NeuronPasswordToolkit.Views
         public AboutView()
         {
             InitializeComponent();
+            versionText.Text = "Application Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

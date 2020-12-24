@@ -25,8 +25,8 @@
                 <Bold>Product Name:</Bold> Neuron Password Toolkit</TextBlock>
         </Label>
         <Label Grid.Row="1" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock>
-                <Bold>Application Version:</Bold> 0.0.2
+            <TextBlock x:Name="versionText">
+                <Bold></Bold> 
             </TextBlock>
         </Label>
         <Label Grid.Row="2" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center">

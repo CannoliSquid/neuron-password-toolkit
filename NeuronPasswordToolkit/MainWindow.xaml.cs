@@ -52,5 +52,12 @@ namespace NeuronPasswordToolkit
             AboutView about = new AboutView();
             ContentControl.Content = about;
         }
+
+        private void StrengthCheckMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Set AboutPage as home screen.
+            StrengthCheckView strength = new StrengthCheckView();
+            ContentControl.Content = strength;
+        }
     }
 }

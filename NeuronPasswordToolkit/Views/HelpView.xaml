@@ -13,6 +13,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -26,6 +28,12 @@
             <TextBlock>
                 - Please remember that the security questions asked during the password generation process will be used as a part of the result. <LineBreak/>
                 This is to try and help create a more memorable password that is easier for the standard end user to remember.
+            </TextBlock>
+        </Label>
+        <Label Grid.Row="4" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock>
+                - The Strength Check tool is not completely secured, so please enter passwords at your own risk. <LineBreak/>
+                The tool was originally created for the purpose of seeing an example of how entropy is measured and how different critera can effect this. 
             </TextBlock>
         </Label>
     </Grid>

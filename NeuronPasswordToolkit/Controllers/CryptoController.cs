@@ -100,7 +100,7 @@ namespace NeuronPasswordToolkit.Controllers
             string passInProgress2 = passInProgress1.Insert(nAgonv3p2, spchar[1].ToString());
             string finalPassInProgress = passInProgress2.Insert(nAgonv3p3, spchar[2].ToString());
 
-            //Attempt to replace familiar characters -- currently broken --
+            //Attempt to replace familiar characters
             string pIPv2 = cryptoH.leetSpeakTransform(finalPassInProgress);
 
             //3 sided coin. More random generation
@@ -128,7 +128,6 @@ namespace NeuronPasswordToolkit.Controllers
 
             SecureString final = cryptoH.passLengthEnforce(pIPv3, spcs, len);
 
-            //replace with final when  you get this function working.
             //Finally done
             return final;
         }
@@ -151,7 +150,7 @@ namespace NeuronPasswordToolkit.Controllers
                 finalCharPool += defspecialChars[nAgon2].ToString();
                 finalCharPool += defspecialChars[nAgon3].ToString();
             }
-            else if (selection == "special")
+            else if (selection == "specific")
             {
                 int nAgonv2 = rng.Next(1, specspecialChars.Length);
                 int nAgonv2p2 = rng.Next(1, specspecialChars.Length);

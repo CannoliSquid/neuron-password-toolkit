@@ -31,7 +31,6 @@ namespace NeuronPasswordToolkit.Controllers
         //Save function
         public void save(SecureString pass)
         {
-            //TextBox gpt = Application.OpenForms["mainForm"].Controls["generatedPassTextBox"] as TextBox;
             string strPath = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
             FileStream fs = new FileStream(strPath + "\\pass.txt", FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);

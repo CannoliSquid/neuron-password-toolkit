@@ -10,7 +10,6 @@ namespace NeuronPasswordToolkit.Helpers
     {
         //Controller(s)
         IOController ioCtrlr = new IOController();
-        //CryptoController cryptoCtrlr = new CryptoController();
         StringHelper sh = new StringHelper();
 
         //class vars

@@ -26,9 +26,10 @@ namespace NeuronPasswordToolkit.ViewModels
                 {
                     "What was the color of the walls in your room when you were a child?",
                     "Who is your favorite band/artist?",
-                    "What band/artist is your guilt pleasure?",
+                    "What band/artist is your guilty pleasure?",
                     "In a few words, describe your most embarrassing memory.",
                     "What was the name of the road you lived on as a child?",
+                    "What is the full name of your favorite fictional character?",
                     "Where did you go for your first vacation?",
                     "Where were you when you had your first kiss?",
                     "What is/was your nickname?",
@@ -66,16 +67,16 @@ namespace NeuronPasswordToolkit.ViewModels
                 return new List<string>
                 {
                     "What were the first 5 digits of your first telephone number (either cellular or home)?",
-                    "What year was your favorite album released?",
+                    "What year was your favorite album released? How many members did the band have at that time?",
                     "Pick 5 numbers, 1 through 60, to play the lottery with for the rest of your life.",
                     "What is your shoe size and lucky number? (Enter as one number)",
                     "How old were you when you moved into your own apartment/house? What was the postal code there?",
-                    "What year did you graduate from high school?",
+                    "What year did you graduate from high school? How many people were in your graduating class?",
                     "If you were swarmed by an army of duck-sized horses, how many would it take to overwhelm you? Be confident!",
                     "What was the postal code of the area you lived in when you were in 5th grade?",
                     "What was the most expensive thing you remember purchasing? (Round to the nearest dollar)",
-                    "What was the model year of your first car?",
-                    "At what time of day do you usually eat your first meal?",
+                    "What was the model year of your first car? How many times did you stain the interior?",
+                    "At what time of day do you usually eat your first meal of the day? What about your last meal?",
                     "What age did you start dating? What age are you now? (Enter as one number)",
                     "What date is significant to you?"
                 };

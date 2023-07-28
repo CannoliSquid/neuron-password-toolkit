@@ -50,7 +50,11 @@ namespace NeuronPasswordToolkit.Controllers
         static SecureString genRandom(int length, string input)
         {
             SecureString randString = new SecureString();
-            using (RNGCryptoServiceProvider crng = new RNGCryptoServiceProvider())
+
+            //Previously used RNGCryptopServiceProvider.
+            var crng = RandomNumberGenerator.Create();
+
+            using (crng)
             {
                 //potential pitfall here if not enough chars in passinprogress -- fix in later iteration by looping over again
                 while (randString.Length != length)
@@ -94,7 +98,7 @@ namespace NeuronPasswordToolkit.Controllers
             int nAgonv3p2 = rng.Next(1, passInProgress.Length);
             int nAgonv3p3 = rng.Next(1, passInProgress.Length);
 
-            //Use random numbers to insert special characters into the password as it is being build
+            //Use random numbers to insert special characters into the password as it is being built
             //look into changing into securestring
             string passInProgress1 = passInProgress.Insert(nAgonv3, spchar[0].ToString());
             string passInProgress2 = passInProgress1.Insert(nAgonv3p2, spchar[1].ToString());

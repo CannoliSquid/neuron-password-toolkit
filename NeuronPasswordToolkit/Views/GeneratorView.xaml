@@ -24,7 +24,7 @@
 
         <Grid x:Name="FormMainInputGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="15,15,15,15">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -39,19 +39,19 @@
             <Label x:Name="FormMainInputTitleLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Center" VerticalAlignment="Center">Input Information</Label>
             <Label x:Name="FormMainInputQ1Label" Grid.Row="1" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center">Question 1:</Label>
+                   HorizontalAlignment="Left" VerticalAlignment="Center">Question 1:</Label>
             <ComboBox x:Name="FormMainInputQ1Select" ItemsSource="{Binding StringQuestion}" SelectedItem="{Binding SelectedStringQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputA1Label" Grid.Row="2" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center">Answer:</Label>
+                   HorizontalAlignment="Left" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA1TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  Text="{Binding AnsweredQuestion1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputQ2Label" Grid.Row="3" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center">Question 2:</Label>
+                   HorizontalAlignment="Left" VerticalAlignment="Center">Question 2:</Label>
             <ComboBox x:Name="FormMainInputQ2Select" ItemsSource="{Binding NumberQuestion}" SelectedItem="{Binding SelectedNumberQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
             <Label x:Name="FormMainInputA2Label" Grid.Row="4" Grid.Column="0" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center">Answer:</Label>
+                   HorizontalAlignment="Left" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA2TB" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  Text="{Binding AnsweredQuestion2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </Grid>

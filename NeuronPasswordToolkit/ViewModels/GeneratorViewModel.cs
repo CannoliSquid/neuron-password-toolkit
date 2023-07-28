@@ -192,7 +192,7 @@ namespace NeuronPasswordToolkit.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error Occurred", ex.ToString());
+                MessageBox.Show("An Error Occurred While Generating a Random Password", ex.ToString());
             }
         }
 
@@ -205,15 +205,25 @@ namespace NeuronPasswordToolkit.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error Occurred", ex.ToString());
+                MessageBox.Show("An Error Occurred While Generating a Familiar Password", ex.ToString());
             }
         }
 
         private void FormOutputSaveButton_Click()
         {
-            FinalProduct.MakeReadOnly();
-            io.save(FinalProduct);
-            FinalProduct.Dispose();
+            try
+            {
+                if(FinalProduct != null)
+                {
+                    FinalProduct.MakeReadOnly();
+                    io.save(FinalProduct);
+                    FinalProduct.Dispose();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Error Occurred While Saving", ex.ToString());
+            }
         }
 
         public void CreateFinalProduct()

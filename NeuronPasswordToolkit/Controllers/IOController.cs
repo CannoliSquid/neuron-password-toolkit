@@ -39,6 +39,7 @@ namespace NeuronPasswordToolkit.Controllers
             HandleSecureString(pass, sw);
             sw.Flush();
             sw.Dispose();
+            //fs.Flush();
             fs.Dispose();
             pass.Dispose();
         }
@@ -53,7 +54,7 @@ namespace NeuronPasswordToolkit.Controllers
             sw.WriteLine("Measure of strength: " + input);
             sw.Flush();
             sw.Dispose();
-            fs.Flush();
+            //fs.Flush();
             fs.Dispose();
         }
 
@@ -67,7 +68,7 @@ namespace NeuronPasswordToolkit.Controllers
             sw.WriteLine(input);
             sw.Flush();
             sw.Dispose();
-            fs.Flush();
+            //fs.Flush();
             fs.Dispose();
         }
     }

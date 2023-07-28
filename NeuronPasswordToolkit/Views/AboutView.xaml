@@ -43,10 +43,10 @@
             <TextBlock>
                 <Bold>Application Foreword:</Bold><LineBreak/> <LineBreak/> 
                 This application is based on my senior thesis from college and is meant to illustrate the best features of open source password managers <LineBreak/> 
-                as well as password generation, password 'validation'/strength testing (against rather widely accepted security critera), and encryption. <LineBreak/> <LineBreak/> 
+                as well as password generation, password 'validation'/strength testing (against widely accepted security critera), and encryption. <LineBreak/> <LineBreak/> 
                 The password generation aspect of the application is unique in the sense that the password generator will ask the user for personal <LineBreak/> 
                 information (which it will dispose of securely), take the answers, and use (pseudo) random number generation to make a secure password <LineBreak/>
-                that is more memorable to the user than the typical randomly generated string of characters due to the personal input.
+                that is more memorable to the user than the typical randomly generated string of characters due to the personal connection to the input.
             </TextBlock>
         </Label>
     </Grid>

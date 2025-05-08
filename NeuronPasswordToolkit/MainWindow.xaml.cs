@@ -30,6 +30,7 @@ namespace NeuronPasswordToolkit
             //Set AboutPage as home screen.
             AboutView about = new AboutView();
             ContentControl.Content = about;
+            CloseMenu();
         }
 
         private void GeneratorMenuItem_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,7 @@ namespace NeuronPasswordToolkit
             //Set HomePage as home screen.
             GeneratorView generate = new GeneratorView();
             ContentControl.Content = generate;
+            CloseMenu();
         }
 
         private void HelpMenuItem_Click(object sender, RoutedEventArgs e)
@@ -44,6 +46,7 @@ namespace NeuronPasswordToolkit
             //Set HomePage as home screen.
             HelpView help = new HelpView();
             ContentControl.Content = help;
+            CloseMenu();
         }
 
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
@@ -51,6 +54,7 @@ namespace NeuronPasswordToolkit
             //Set AboutPage as home screen.
             AboutView about = new AboutView();
             ContentControl.Content = about;
+            CloseMenu();
         }
 
         private void StrengthCheckMenuItem_Click(object sender, RoutedEventArgs e)
@@ -58,6 +62,14 @@ namespace NeuronPasswordToolkit
             //Set AboutPage as home screen.
             StrengthCheckView strength = new StrengthCheckView();
             ContentControl.Content = strength;
+            CloseMenu();
+        }
+
+        private void CloseMenu()
+        {
+            //Close the sidebar/menu after an option is selected.
+            //MenuDrawer.IsLeftDrawerOpen = false; This complained about accessibility
+            MenuToggleButton.IsChecked = false; //This should perform the same but be better from a privacy standpoint.
         }
     }
 }

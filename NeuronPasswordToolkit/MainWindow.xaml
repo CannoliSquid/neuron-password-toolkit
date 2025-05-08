@@ -19,7 +19,7 @@
         BorderBackgroundBrush="Black">
     <!--Typically you place the DrawerHost neer the root of your view-->
     <!-- Any content that you want the side drawers to cover needs to be inside of the DrawerHost -->
-    <md:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+    <md:DrawerHost x:Name="MenuDrawer" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
         <md:DrawerHost.LeftDrawerContent>
             <DockPanel MinWidth="212">
                 <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 

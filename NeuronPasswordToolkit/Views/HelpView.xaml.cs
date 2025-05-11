@@ -18,6 +18,8 @@ namespace NeuronPasswordToolkit.Views
     /// </summary>
     public partial class HelpView : UserControl
     {
+        public static string ViewName = "Help & Tips";
+
         public HelpView()
         {
             InitializeComponent();

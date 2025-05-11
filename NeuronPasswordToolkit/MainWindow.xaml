@@ -22,7 +22,7 @@
     <md:DrawerHost x:Name="MenuDrawer" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
         <md:DrawerHost.LeftDrawerContent>
             <DockPanel MinWidth="212">
-                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" 
                               DockPanel.Dock="Top"
                               HorizontalAlignment="Right" Margin="16"
                               IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
@@ -37,7 +37,7 @@
                     </Menu.ItemsPanel>
                     <MenuItem x:Name="NavMIAbout" Header="About" Click="AboutMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="NavMIGenerator" Header="Generator" Click="GeneratorMenuItem_Click"></MenuItem>
-                    <MenuItem x:Name="NavMIStrength" Header="Strength Check" Click="StrengthCheckMenuItem_Click"></MenuItem>
+                    <MenuItem x:Name="NavMIStrength" Header="Password Strength Check" Click="StrengthCheckMenuItem_Click"></MenuItem>
                     <MenuItem x:Name="NavMIHelp" Header="Help" Click="HelpMenuItem_Click"></MenuItem>
                 </Menu>
             </DockPanel>
@@ -47,17 +47,18 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
             </Grid.RowDefinitions>
 
-            <md:ColorZone Padding="8" md:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" DockPanel.Dock="Top" Grid.Row="0">
+            <md:ColorZone Padding="8" md:ElevationAssist.Elevation="Dp3" Mode="PrimaryMid" DockPanel.Dock="Top" Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                   x:Name="MenuToggleButton" Grid.Column="0"/>
+                    <Label x:Name="PageTitleLabel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </md:ColorZone>
             <ContentControl x:Name="ContentControl" Grid.Row="1" 

@@ -15,11 +15,11 @@ namespace NeuronPasswordToolkit.Models
             {
                 return new List<string>
                 {
-                    "What was the color of the walls in your room when you were a child?",
+                    "What was the color of the walls in your room when you were younger?",
                     "Who is your favorite band/artist?",
                     "What band/artist is your guilty pleasure?",
                     "In a few words, describe your most embarrassing memory.",
-                    "What was the name of the road you lived on as a child?",
+                    "What was the name of the road you lived on when you were younger?",
                     "What is the full name of your favorite fictional character?",
                     "Where did you go for your first vacation?",
                     "Where were you when you had your first kiss?",

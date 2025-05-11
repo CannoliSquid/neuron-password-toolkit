@@ -23,6 +23,7 @@ namespace NeuronPasswordToolkit.Views
     /// </summary>
     public partial class GeneratorView : UserControl
     {
+        public static string ViewName = "Password Generator";
         public GeneratorView()
         {
             InitializeComponent();

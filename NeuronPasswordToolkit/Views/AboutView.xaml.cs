@@ -19,6 +19,8 @@ namespace NeuronPasswordToolkit.Views
     /// </summary>
     public partial class AboutView : UserControl
     {
+        public static string ViewName = "About";
+
         public AboutView()
         {
             InitializeComponent();

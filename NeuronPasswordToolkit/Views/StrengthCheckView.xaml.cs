@@ -18,6 +18,8 @@ namespace NeuronPasswordToolkit.Views
     /// </summary>
     public partial class StrengthCheckView : UserControl
     {
+        public static string ViewName = "Password Strength Checker";
+
         public StrengthCheckView()
         {
             InitializeComponent();

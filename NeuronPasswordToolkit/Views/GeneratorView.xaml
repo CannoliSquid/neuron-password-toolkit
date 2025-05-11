@@ -10,6 +10,7 @@
              xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
+    
     <Grid x:Name="FormGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -41,7 +42,13 @@
             <Label x:Name="FormMainInputQ1Label" Grid.Row="1" Grid.Column="0" 
                    HorizontalAlignment="Left" VerticalAlignment="Center">Question 1:</Label>
             <ComboBox x:Name="FormMainInputQ1Select" ItemsSource="{Binding StringQuestion}" SelectedItem="{Binding SelectedStringQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                      Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
+                      Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <EventSetter Event="RequestBringIntoView" Handler="CB_RequestBIVHandler"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
             <Label x:Name="FormMainInputA1Label" Grid.Row="2" Grid.Column="0" 
                    HorizontalAlignment="Left" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA1TB" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
@@ -49,7 +56,13 @@
             <Label x:Name="FormMainInputQ2Label" Grid.Row="3" Grid.Column="0" 
                    HorizontalAlignment="Left" VerticalAlignment="Center">Question 2:</Label>
             <ComboBox x:Name="FormMainInputQ2Select" ItemsSource="{Binding NumberQuestion}" SelectedItem="{Binding SelectedNumberQuestion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
+                      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <EventSetter Event="RequestBringIntoView" Handler="CB_RequestBIVHandler"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
             <Label x:Name="FormMainInputA2Label" Grid.Row="4" Grid.Column="0" 
                    HorizontalAlignment="Left" VerticalAlignment="Center">Answer:</Label>
             <TextBox x:Name="FormMainInputA2TB" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" md:HintAssist.Hint="Answer to Question 2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
@@ -97,7 +110,13 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center">Desired Password Length:</Label>
             <ComboBox x:Name="FormLengthInputLengthSelect" ItemsSource="{Binding LengthSelector}" SelectedItem="{Binding SelectedLength, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
-                      VerticalAlignment="Center"/>
+                      VerticalAlignment="Center">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <EventSetter Event="RequestBringIntoView" Handler="CB_RequestBIVHandler"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
             <Button x:Name="FormGenerateRandomButton" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                     HorizontalAlignment="Stretch" VerticalAlignment="Center" Command="{Binding FormGenerateRandomButtonClick}" Click="FormGenerateRandomButton_Click">Generate Random Password</Button>
             <Button x:Name="FormGenerateFamiliarButton" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"

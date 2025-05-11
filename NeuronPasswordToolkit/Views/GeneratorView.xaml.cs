@@ -54,5 +54,11 @@ namespace NeuronPasswordToolkit.Views
         {
             FormOutputPB.Password = null;
         }
+
+        //Handle the Combobox scrolling down on hover by responding that it's been handled.
+        private void CB_RequestBIVHandler(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

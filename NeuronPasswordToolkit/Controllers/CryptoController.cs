@@ -107,7 +107,7 @@ namespace NeuronPasswordToolkit.Controllers
             //Attempt to replace familiar characters
             string pIPv2 = cryptoH.leetSpeakTransform(finalPassInProgress);
 
-            //3 sided coin. More random generation
+            //3 sided 'coin'. More random generation
             int strangecoin = rng.Next(2, 4);
 
             //Take x% of the first answer, rounded up.

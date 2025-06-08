@@ -25,7 +25,8 @@
                 <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" 
                               DockPanel.Dock="Top"
                               HorizontalAlignment="Right" Margin="16"
-                              IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                              IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
+                              Command="{Binding MenuOpen}"/>
                 <Menu x:Name="NavMenu">
                     <Menu.Resources>
                         <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}"></Style>
@@ -35,10 +36,10 @@
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem x:Name="NavMIAbout" Header="About" Click="AboutMenuItem_Click"></MenuItem>
-                    <MenuItem x:Name="NavMIGenerator" Header="Generator" Click="GeneratorMenuItem_Click"></MenuItem>
-                    <MenuItem x:Name="NavMIStrength" Header="Password Strength Check" Click="StrengthCheckMenuItem_Click"></MenuItem>
-                    <MenuItem x:Name="NavMIHelp" Header="Help" Click="HelpMenuItem_Click"></MenuItem>
+                    <MenuItem x:Name="NavMIAbout" Header="About" Command="{Binding AboutMenuItemClick}"></MenuItem>
+                    <MenuItem x:Name="NavMIGenerator" Header="Generator" Command="{Binding GeneratorMenuItemClick}"></MenuItem>
+                    <MenuItem x:Name="NavMIStrength" Header="Password Strength Check" Command="{Binding StrengthCheckMenuItemClick}"></MenuItem>
+                    <MenuItem x:Name="NavMIHelp" Header="Help" Command="{Binding HelpMenuItemClick}"></MenuItem>
                 </Menu>
             </DockPanel>
         </md:DrawerHost.LeftDrawerContent>
@@ -61,9 +62,10 @@
                     <Label x:Name="PageTitleLabel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </md:ColorZone>
-            <ContentControl x:Name="ContentControl" Grid.Row="1" 
+            <ContentControl x:Name="MainView" Grid.Row="1" 
             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+            ></ContentControl>
             
         </Grid>
     </md:DrawerHost>

@@ -12,75 +12,8 @@ namespace NeuronPasswordToolkit.Controllers
         //CryptoController cryptoCtrlr = new CryptoController();
         StringHelper sh = new StringHelper();
 
-        //class vars
         //Initialize RNG
         private Random rng = new Random();
-
-        //Method to be called
-        /*public void largebatchStrengthChecks()
-        {
-            try
-            {
-                for (int u = 0; u < 25; u++)
-                {
-                    uHelper.lenNUD.Value = 8;
-                    ioCtrlr.write("Random");
-                    cryptoCtrlr.generateRandom();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write(" ");
-                    ioCtrlr.write("Familiar");
-                    cryptoCtrlr.generateFamiliar();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write(" ");
-                }
-                for (int u = 0; u < 25; u++)
-                {
-                    uHelper.lenNUD.Value = 12;
-                    ioCtrlr.write("Random");
-                    cryptoCtrlr.generateRandom();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write("Familiar");
-                    cryptoCtrlr.generateFamiliar();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write(" ");
-                }
-                for (int u = 0; u < 25; u++)
-                {
-                    uHelper.lenNUD.Value = 16;
-                    ioCtrlr.write("Random");
-                    cryptoCtrlr.generateRandom();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write("Familiar");
-                    cryptoCtrlr.generateFamiliar();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write(" ");
-                }
-                for (int u = 0; u < 25; u++)
-                {
-                    uHelper.lenNUD.Value = 20;
-                    ioCtrlr.write("Random");
-                    cryptoCtrlr.generateRandom();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write("Familiar");
-                    cryptoCtrlr.generateFamiliar();
-                    ioCtrlr.save();
-                    strengthTestChecks();
-                    ioCtrlr.write(" ");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Please fill in the 'Generate -> New Password' form before trying to run the strength test. ", "Form Empty",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }*/
 
         //Check strength w/ Entropy
         /* public void checkEntropy()

@@ -164,6 +164,7 @@ namespace NeuronPasswordToolkit.ViewModels
 
         #endregion
 
+        //Instantiate ViewModel and set up RelayCommands
         public GeneratorViewModel()
         {
             FormSpecCharsSpecificChecked = new RelayCommand(o => FormSpecCharsSpecific_Checked());
@@ -226,6 +227,7 @@ namespace NeuronPasswordToolkit.ViewModels
             }
         }
 
+        //Consider making this cleaner.
         public void CreateFinalProduct()
         {
             CryptoController crypto = new CryptoController();
